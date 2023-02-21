@@ -1,13 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
+import { getProducts, postProduct } from './api/product'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([])
+
+  const handleProducts = async () => {
+    const response = await getProducts({})
+    if (response) {
+      setProducts(response?.data)
+    }
+  }
+
+  const assignProduct = async () => {
+    const response = await postProduct({
+      name: 'Laptop'
+    })
+
+    console.log(response)
+  }
+
+  useEffect(() => {
+    handleProducts()
+  }, [])
+
+  console.log(products)
 
   return (
     <div className='App'>
       <div>
+        <button onClick={assignProduct}>assign product</button>
         <a href='https://vitejs.dev' target='_blank'>
           <img src='/vite.svg' className='logo' alt='Vite logo' />
         </a>
