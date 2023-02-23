@@ -1,0 +1,27 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "clinyong.vscode-css-modules",
+    "codezombiech.gitignore",
+    "dbaeumer.vscode-eslint",
+    "drknoxy.eslint-disable-snippets",
+    "ecmel.vscode-html-css",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "hedinne.stylelint-disable-snippets",
+    "mariusalchimavicius.json-to-ts",
+    "mattpocock.ts-error-translator",
+    "mflo999.lintel",
+    "mikestead.dotenv",
+    "pmneo.tsimporter",
+    "rangav.vscode-thunder-client",
+    "redhat.vscode-yaml",
+    "stylelint.vscode-stylelint",
+    "tyriar.sort-lines",
+    "wmaurer.change-case"
+  ]
+}
