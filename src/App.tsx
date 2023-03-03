@@ -1,57 +1,12 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import { getProducts, postProduct } from './api/product'
-import './App.css'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [products, setProducts] = useState([])
+const queryClient = new QueryClient()
 
-  const handleProducts = async () => {
-    const response = await getProducts({})
-    if (response) {
-      setProducts(response?.data)
-    }
-  }
-
-  const assignProduct = async () => {
-    const response = await postProduct({
-      name: 'Laptop'
-    })
-
-    console.log(response)
-  }
-
-  useEffect(() => {
-    handleProducts()
-  }, [])
-
-  console.log(products)
-
+const App = () => {
   return (
-    <div className='App'>
-      <div>
-        <button onClick={assignProduct}>assign product</button>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src='/vite.svg' className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://reactjs.org' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div>Blank App</div>
+    </QueryClientProvider>
   )
 }
 
