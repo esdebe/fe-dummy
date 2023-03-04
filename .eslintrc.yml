@@ -3,14 +3,18 @@ env:
   es2021: true
   node: true
 extends:
-  - plugin:react/recommended
   - airbnb
-  - plugin:react/jsx-runtime
   - airbnb-typescript
-  - plugin:import/recommended
-  - plugin:import/typescript
+  - eslint:recommended
+  - plugin:react/recommended
   - plugin:react-hooks/recommended
+  - plugin:react/jsx-runtime
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
+  - plugin:jsx-a11y/recommended
   - plugin:prettier/recommended
+  - plugin:@tanstack/eslint-plugin-query/recommended
   - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
@@ -20,15 +24,20 @@ parserOptions:
   sourceType: module
   project: ./tsconfig.json
 plugins:
+  - '@tanstack/query'
+  - "@typescript-eslint"
   - react
-  - '@typescript-eslint'
   - import
   - prettier
 rules:
+  "@typescript-eslint/no-unused-vars":
+    - warn
+    - argsIgnorePattern: ^_
+      varsIgnorePattern: ^_
+      caughtErrorsIgnorePattern: ^_
   react/jsx-fragments:
     - 1
     - element
-  react/jsx-props-no-spreading: off
   react/prop-types: off
   react/require-default-props: off
   react/function-component-definition: [2, { "namedComponents": "arrow-function" }]
