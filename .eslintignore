@@ -1,1 +1,4 @@
-vite.config.ts
+# .eslintignore
+
+dist
+.tmp

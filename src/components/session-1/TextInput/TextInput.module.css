@@ -1,0 +1,61 @@
+:root {
+  /* color */
+  --color-blue-300: 147 197 253;
+  --color-blue-400: 96 165 250;
+  --color-blue-500: 59 130 246;
+  --color-white: 255 255 255;
+
+  /* space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-32: 8rem;
+  --space-none: 0px;
+
+  /* rounded */
+  --rounded-none: 0;
+  --rounded-sm: 0.125rem;
+  --rounded: 0.25rem;
+  --rounded-md: 0.375rem;
+  --rounded-lg: 0.5rem;
+
+  /* border */
+  --border-2: 2px;
+  --border-4: 4px;
+  --border-8: 16px;
+}
+
+.input {
+  /* background-color: var(--color-white);
+  border-color: var(--color-blue-300);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+  padding-right: var(--space-32);
+  border-width: var(--border-2);
+  border-radius: var(--rounded-lg);
+  border-style: solid; */
+  width: 100%;
+}
+
+.input:hover {
+  border-color: var(--color-blue-400);
+}
+
+.input:focus {
+  outline: var(--space-none);
+  outline-width: 1px;
+  border-color: var(--color-blue-500);
+  border-width: var(--border-2);
+}
+
+.disabled {
+  background-color: var(--color-blue-500);
+}
+
+.root {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  display: flex;
+}

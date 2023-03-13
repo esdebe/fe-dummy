@@ -2,15 +2,20 @@ env:
   browser: true
   es2021: true
   node: true
+root: true
 extends:
+  # ! before add and reorder check if rules override each other
+  - eslint:recommended
   - plugin:react/recommended
+  - plugin:react-hooks/recommended
   - airbnb
-  - plugin:react/jsx-runtime
   - airbnb-typescript
+  - plugin:react/jsx-runtime
   - plugin:import/recommended
   - plugin:import/typescript
-  - plugin:react-hooks/recommended
+  - plugin:jsx-a11y/recommended
   - plugin:prettier/recommended
+  - plugin:@tanstack/eslint-plugin-query/recommended
   - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
@@ -20,27 +25,87 @@ parserOptions:
   sourceType: module
   project: ./tsconfig.json
 plugins:
-  - react
+  - '@tanstack/query'
   - '@typescript-eslint'
+  - react
   - import
   - prettier
 rules:
+  # * js
+  camelcase: 0
+  # * react
   react/jsx-fragments:
     - 1
     - element
-  react/jsx-props-no-spreading: off
-  react/prop-types: off
-  react/require-default-props: off
-  prettier/prettier:
-    - 1
-    - {}
-    - usePrettierrc: true
+  react/prop-types: 0
+  react/require-default-props: 0
+  react/function-component-definition:
+    - 2
+    - namedComponents: arrow-function
+  # * import
   import/no-extraneous-dependencies:
     - 2
-    - devDependencies: true
+    - devDependencies:
+      - 'vite.config.ts'
+      - '**/*.spec.ts'
+      - '**/*.spec.tsx'
   import/prefer-default-export: 0
-  camelcase: off
+  import/order:
+    - 1
+    - newlines-between: always
+      alphabetize:
+        order: asc
+      pathGroups:
+      - pattern: "@api/**"
+        group: internal
+      - pattern: "@assets/**"
+        group: internal
+      - pattern: "@components/**"
+        group: internal
+      - pattern: "@helpers/**"
+        group: internal
+      - pattern: "@pages/**"
+        group: internal
+      - pattern: "@store/**"
+        group: internal
+      groups:
+        - builtin
+        - external
+        - internal
+        - parent
+        - sibling
+        - index
+        - object
+        - type
+  # * typescript
   '@typescript-eslint/naming-convention': 0
+  '@typescript-eslint/no-unused-vars':
+    - warn
+    - argsIgnorePattern: ^_
+      varsIgnorePattern: ^_
+      caughtErrorsIgnorePattern: ^_
+  # * prettier
+  prettier/prettier:
+      - 1
+      - {}
+      - usePrettierrc: true
+overrides:
+  # * overrides inside components directory
+  - files:
+      - '**/components/**/*.tsx'
+      - '**/components/**/*.jsx'
+    rules:
+      react/jsx-props-no-spreading: 0
+  - files:
+      - 'vite.config.ts'
+    parserOptions:
+      ecmaFeatures:
+        jsx: true
+      ecmaVersion: latest
+      sourceType: module
+      project: ./tsconfig.node.json
+    rules:
+      import/no-extraneous-dependencies: 0
 settings:
   import/parsers:
     '@typescript-eslint/parser':
